@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { CapitalizeEachWord } from "../components/miscFunctions";
 import { ErrorMessage, ErrorStatus } from "../components/errorMessages";
-
+import Variables from "../shh";
 import { PreviewMusicPlayer } from "~/components/musicPlayer";
 import { Card } from "../components/card";
 // import { Link } from "@remix-run/react";
@@ -15,8 +15,8 @@ export const meta = () => {
   ];
 };
 
-const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const CLIENT_ID = Variables.SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = Variables.SPOTIFY_CLIENT_SECRET;
 
 export default function App() {
   const [errorOccured, setErrorOccured] = useState(false);
