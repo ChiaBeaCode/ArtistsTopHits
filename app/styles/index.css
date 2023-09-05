@@ -166,7 +166,6 @@ body{
     transform: scale(1.2);
 }
 
-
 @media (max-width: 750px) {
     .searchArea{
         margin: 30px 50px;
