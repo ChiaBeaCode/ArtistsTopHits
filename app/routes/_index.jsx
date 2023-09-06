@@ -15,8 +15,10 @@ export const meta = () => {
   ];
 };
 
-const CLIENT_ID = Variables.SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = Variables.SPOTIFY_CLIENT_SECRET;
+const CLIENT_ID ="75d85797df8945908ad06a3166a55b3b"
+const CLIENT_SECRET ="bf8033d9ad0e4ba9ad23b4e16f623b47"
+// const CLIENT_ID = Variables.SPOTIFY_CLIENT_ID;
+// const CLIENT_SECRET = Variables.SPOTIFY_CLIENT_SECRET;
 
 export default function App() {
   const [errorOccured, setErrorOccured] = useState(false);
