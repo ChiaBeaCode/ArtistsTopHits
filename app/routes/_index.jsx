@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { CapitalizeEachWord } from "../components/miscFunctions"
 import { ErrorMessage, ErrorStatus } from "../components/errorMessages";
-import Variables from "../shh";
+// import Variables from "../shh";
 import { PreviewMusicPlayer } from "~/components/musicPlayer";
 import { Card } from "../components/card";
 // import { Link } from "@remix-run/react";
