@@ -2,9 +2,9 @@ import styles from "~/styles/index.css";
 import logo from "~/styles/logo.png";
 import { useState, useEffect, useRef } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import { CapitalizeEachWord } from "../components/miscFunctions";
+import { CapitalizeEachWord } from "../components/miscFunctions"
 import { ErrorMessage, ErrorStatus } from "../components/errorMessages";
-// import Variables from "../shh";
+import Variables from "../shh";
 import { PreviewMusicPlayer } from "~/components/musicPlayer";
 import { Card } from "../components/card";
 // import { Link } from "@remix-run/react";
@@ -15,8 +15,8 @@ export const meta = () => {
   ];
 };
 
-const CLIENT_ID = process.env.NETLIFY_CLIENT_ID;
-const CLIENT_SECRET = process.env.NETLIFY_CLIENT_SECRET;
+const CLIENT_ID = Variables.SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = Variables.SPOTIFY_CLIENT_SECRET;
 
 export default function App() {
   const [errorOccured, setErrorOccured] = useState(false);
@@ -28,7 +28,15 @@ export default function App() {
   });
   const searchInputRef = useRef();
 
+
+
+
+
+
+
+
   useEffect(() => {
+    console.log("beginnning")
     var authParameters = {
       method: "POST",
       headers: {
@@ -42,9 +50,18 @@ export default function App() {
     };
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((result) => result.json())
-      .then((data) => setAccessToken(data.access_token))
-      .catch((error => ErrorMessage(error.status)));
+      .then((data) => {
+        if (data.access_token == undefined || data.access_token == null){
+          throw new Error("Access token not recieved" + data.status)
+        }
+        setAccessToken(data.access_token)
+      })
+      .catch((error => setErrorOccured(true)));
   }, []);
+
+
+
+
 
   async function search() {
     const searchInput = CapitalizeEachWord(searchInputRef.current.value);
@@ -58,39 +75,48 @@ export default function App() {
     // var artistId = await fetch("https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist", searchParameters)
     // .then(response => response.json())
     // .then(data => {return data.artists.items[0].id })
+
+
+
+
+
+
+
+
     var artistId = await fetch(
       "https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist",
       searchParameters
     )
       .then((response) => {
         if (response.status != 200) {
-          console.log("error 1")
           throw new Error('API request failed with status ' + response.status);
-          // ErrorStatus(response.status);
-        } else {
-          console.log("response 2");
-          return response.json();
-        }
+        } 
+        return response.json();
       })
       .then((data) => {
         console.log(data);
-        if (data.artists.items.length > 0) {
+        if (data.artists.items.length == 0){
+          throw new Error("first invalid input")
+        } else if (data.artists.items.length > 0) {
           for (const i in data.artists.items) {
             if (searchInput === data.artists.items[i].name) {
+              setErrorOccured(false)
               return data.artists.items[i].id;
-            } else if (undefined) {
-              console.log("undefinded? first")
-              setErrorOccured(!errorOccured);
-            }
+            } 
           }
-        } else {
-          console.log("why come through?")
-          setErrorOccured(!errorOccured);
-        }
+        } 
       }).catch((error) => {
-        console.error("caught it first?", error)
-        ErrorStatus(error)
+        setErrorOccured(true)
       });
+
+
+
+
+
+
+
+
+
 
     var topTen = await fetch(
       "https://api.spotify.com/v1/artists/" +
@@ -102,22 +128,34 @@ export default function App() {
         if (response.status != 200) {
           console.log("error 2")
           throw new Error('API request failed with status ' + response.status);
-          // ErrorStatus(response.status);
-        } else {
-          console.log("response 2", response.status)
-          return response.json();
-        }
+        } 
+        return response.json();
       })
       .then((data) => {
+        if (data.tracks.length == 0){
+          throw new Error()
+        }
         console.log("data 2", data);
+        setErrorOccured(false)
         setTop10Songs(data.tracks);
       })
       .catch((error) => {
-        console.error("caught it second?", error)
-        ErrorStatus(error)
+        console.log("second caught error")
+        setErrorOccured(true)
       });
     console.log("search ", searchInput, topTen);
   }
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="app">

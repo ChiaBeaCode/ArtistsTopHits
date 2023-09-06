@@ -16,7 +16,8 @@
     /* width: 850px; */
     width: 70vw;
     height: 50px;
-    position: sticky;
+    position: fixed;
+    /* position: sticky; */
     left: 13%;
     bottom: 0;
     margin: 5px auto 0;
