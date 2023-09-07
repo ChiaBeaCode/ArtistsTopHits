@@ -1,22 +1,21 @@
 import styles from "~/styles/index.css";
 import logo from "~/styles/logo.png";
+import defaultImg from "~/styles/defaultImg.jpg"
 import { useState, useEffect, useRef } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import { CapitalizeEachWord } from "../components/miscFunctions"
-import { ErrorMessage, ErrorStatus } from "../components/errorMessages";
+import { CapitalizeEachWord } from "../components/miscFunctions";
+import { ErrorMessage } from "../components/errorMessages";
 // import Variables from "../shh";
 import { PreviewMusicPlayer } from "~/components/musicPlayer";
 import { Card } from "../components/card";
 // import { Link } from "@remix-run/react";
 
 export const meta = () => {
-  return [
-    { title: "Artist's Top Ten" },
-  ];
+  return [{ title: "Artist's Top Ten" }];
 };
 
-const CLIENT_ID ="75d85797df8945908ad06a3166a55b3b"
-const CLIENT_SECRET ="bf8033d9ad0e4ba9ad23b4e16f623b47"
+const CLIENT_ID = "75d85797df8945908ad06a3166a55b3b";
+const CLIENT_SECRET = "bf8033d9ad0e4ba9ad23b4e16f623b47";
 // const CLIENT_ID = Variables.SPOTIFY_CLIENT_ID;
 // const CLIENT_SECRET = Variables.SPOTIFY_CLIENT_SECRET;
 
@@ -31,14 +30,7 @@ export default function App() {
   const searchInputRef = useRef();
 
 
-
-
-
-
-
-
   useEffect(() => {
-    console.log("beginnning")
     var authParameters = {
       method: "POST",
       headers: {
@@ -53,17 +45,13 @@ export default function App() {
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((result) => result.json())
       .then((data) => {
-        if (data.access_token == undefined || data.access_token == null){
-          throw new Error("Access token not recieved" + data.status)
+        if (data.access_token == undefined || data.access_token == null) {
+          throw new Error("Access token not recieved" + data.status);
         }
-        setAccessToken(data.access_token)
+        setAccessToken(data.access_token);
       })
-      .catch((error => setErrorOccured(true)));
+      .catch((error) => setErrorOccured(true));
   }, []);
-
-
-
-
 
   async function search() {
     const searchInput = CapitalizeEachWord(searchInputRef.current.value);
@@ -78,47 +66,32 @@ export default function App() {
     // .then(response => response.json())
     // .then(data => {return data.artists.items[0].id })
 
-
-
-
-
-
-
-
     var artistId = await fetch(
       "https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist",
       searchParameters
     )
       .then((response) => {
         if (response.status != 200) {
-          throw new Error('API request failed with status ' + response.status);
-        } 
+          throw new Error("API request failed with status " + response.status);
+        }
         return response.json();
       })
       .then((data) => {
         console.log(data);
-        if (data.artists.items.length == 0){
-          throw new Error("first invalid input")
+        if (data.artists.items.length == 0) {
+          throw new Error("first invalid input");
         } else if (data.artists.items.length > 0) {
           for (const i in data.artists.items) {
             if (searchInput === data.artists.items[i].name) {
-              setErrorOccured(false)
+              setErrorOccured(false);
               return data.artists.items[i].id;
-            } 
+            }
           }
-        } 
-      }).catch((error) => {
-        setErrorOccured(true)
+        }
+      })
+      .catch((error) => {
+        setErrorOccured(true);
       });
-
-
-
-
-
-
-
-
-
 
     var topTen = await fetch(
       "https://api.spotify.com/v1/artists/" +
@@ -128,36 +101,22 @@ export default function App() {
     )
       .then((response) => {
         if (response.status != 200) {
-          console.log("error 2")
-          throw new Error('API request failed with status ' + response.status);
-        } 
+          throw new Error("API request failed with status " + response.status);
+        }
         return response.json();
       })
       .then((data) => {
-        if (data.tracks.length == 0){
-          throw new Error()
+        if (data.tracks.length == 0) {
+          throw new Error();
         }
-        console.log("data 2", data);
-        setErrorOccured(false)
+        setErrorOccured(false);
         setTop10Songs(data.tracks);
       })
       .catch((error) => {
-        console.log("second caught error")
-        setErrorOccured(true)
+        setErrorOccured(true);
       });
-    console.log("search ", searchInput, topTen);
+
   }
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <div className="app">
@@ -190,16 +149,19 @@ export default function App() {
         </button>
       </div>
       {errorOccured ? (
-        ErrorMessage()
-      ) : (
+        <ErrorMessage />
+      ) : top10Songs.length > 0 ? (
+        <>
         <div className="cardContainer">
           <Card top10Songs={top10Songs} setCurrentSong={setCurrentSong} />
         </div>
+        <PreviewMusicPlayer currentSong={currentSong} />
+        </>
+      ) : (
+        // <div></div>
+        <img className="defaultImg" src={defaultImg} alt="default background"></img>
       )}
-      {/* <div className="cardContainer">
-        <Card top10Songs={top10Songs} setCurrentSong={setCurrentSong} />
-      </div> */}
-      <PreviewMusicPlayer currentSong={currentSong} />
+      {/* <PreviewMusicPlayer currentSong={currentSong} /> */}
     </div>
   );
 }

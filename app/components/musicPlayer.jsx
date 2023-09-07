@@ -7,7 +7,7 @@ import {
   BsPauseFill,
 } from "react-icons/bs";
 
-export function PreviewMusicPlayer({currentSong}) {
+export function PreviewMusicPlayer({ currentSong }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -23,12 +23,8 @@ export function PreviewMusicPlayer({currentSong}) {
 
   //Formats & sets duration time if audio metadata available, on initial loading
   useEffect(() => {
-    // const totalDuration = Math.floor(audioPlayer.current.duration);
-    // setDuration(totalDuration);
-    setDuration(audioPlayer.current.duration)
-    // progressBar.current.max = totalDuration;
-    progressBar.current.max = audioPlayer.current.duration
-    console.log("is this being called?");
+    setDuration(audioPlayer.current.duration);
+    progressBar.current.max = audioPlayer.current.duration;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
   // Follows volume level changes
@@ -39,30 +35,6 @@ export function PreviewMusicPlayer({currentSong}) {
   }, [volume]);
 
   // Button - play/pauses song w/image when clicked
-  // const togglePlayPause = () => {
-  //   setIsPlaying(!isPlaying);
-  //   if (!isPlaying) {
-  //     audioPlayer.current.play();
-  //     console.log("Animation play button");
-  //   } else {
-  //     audioPlayer.current.pause();
-  //     console.log("Animation pause button");
-  //   }
-  // };
-
-
-  // useEffect(() => {
-  //   const dur = audioPlayer.current.duration;
-  //   const ct = audioPlayer.current.currentTime;
-
-  //   if (ct == dur) {
-  //     togglePlayPause();
-  //     console.log("they are even");
-  //   }
-  //   progressBar.current.value = audioPlayer.current.currentTime;
-  //   setCurrentTime(progressBar.current.value);
-  // }, [togglePlayPause])
-
   const onPlaying = () => {
     const dur = audioPlayer.current.duration;
     const ct = audioPlayer.current.currentTime;
@@ -87,10 +59,6 @@ export function PreviewMusicPlayer({currentSong}) {
     }
   }, [isPlaying]);
 
-
-
-
-
   // Formats currentTime and duration seconds
   const calculateTime = (secs) => {
     const seconds = Math.floor(secs % 60);
@@ -98,14 +66,12 @@ export function PreviewMusicPlayer({currentSong}) {
     return `0:${returnedSeconds}`;
   };
 
-
   // Tracks song duration when manually changing song position
   const durationChange = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
     setCurrentTime(audioPlayer.current.currentTime);
     console.log("duration change");
   };
-
 
   return (
     <div id="audioPlayer">
@@ -135,7 +101,11 @@ export function PreviewMusicPlayer({currentSong}) {
           ref={progressBar}
           defaultValue={0}
           onChange={durationChange}
-          style={{ "--progress-width": `${Math.floor(currentTime) / Math.floor(duration) * 100 + "%"}` }}
+          style={{
+            "--progress-width": `${
+              (Math.floor(currentTime) / Math.floor(duration)) * 100 + "%"
+            }`,
+          }}
         ></input>
         <span id="totalDuration">
           {!isNaN(duration) && calculateTime(duration)}
@@ -177,5 +147,4 @@ export function PreviewMusicPlayer({currentSong}) {
       </div>
     </div>
   );
-};
-
+}

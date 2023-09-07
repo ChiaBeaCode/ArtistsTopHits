@@ -4,9 +4,9 @@ export function ErrorMessage() {
         style={{
           display: "flex",
           justifyContent: "center",
-          color: "red",
-          fontSize: "18px",
-          margin: "10px auto",
+          color: "#ec0000",
+          fontSize: "20px",
+          margin: "-5px auto",
         }}
       >
         Sorry! We could not find that artist!
