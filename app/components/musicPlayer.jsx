@@ -40,11 +40,9 @@ export function PreviewMusicPlayer({ currentSong }) {
     const ct = audioPlayer.current.currentTime;
     if (ct === dur) {
       togglePlayPause();
-      console.log("They are even");
     } else {
       progressBar.current.value = audioPlayer.current.currentTime;
       setCurrentTime(progressBar.current.value);
-      console.log("Dont know if i want this");
     }
   };
 
@@ -52,10 +50,8 @@ export function PreviewMusicPlayer({ currentSong }) {
     setIsPlaying(!isPlaying);
     if (!isPlaying) {
       audioPlayer.current.play();
-      console.log("Animation play button");
     } else {
       audioPlayer.current.pause();
-      console.log("Animation pause button");
     }
   }, [isPlaying]);
 
@@ -70,7 +66,6 @@ export function PreviewMusicPlayer({ currentSong }) {
   const durationChange = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
     setCurrentTime(audioPlayer.current.currentTime);
-    console.log("duration change");
   };
 
   return (
