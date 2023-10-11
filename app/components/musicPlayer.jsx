@@ -138,7 +138,6 @@ export function PreviewMusicPlayer({ currentSong }) {
           ref={volumeRange}
           id="volumeBar"
         ></input>
-        {/* <button id="previeww"> { currentMusic ? <previewMusicPlayer music={currentMusic}/> : <BlankStateOtherwise/>} </button> */}
       </div>
     </div>
   );
