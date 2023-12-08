@@ -3,8 +3,11 @@
 }
 /* ----------Backdrop-------------- */
 body {
-  background: #f7ebeb;
+  /* background: #f7ebeb; */
+  /* background-image: url("~/styles/background.jpg"); */
   background-image: url("~/styles/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   cursor: default;
   margin: 0;
@@ -29,6 +32,7 @@ body {
   border: 3px solid #78909a;
   border-radius: 20px;
   margin-left: 30px;
+  margin-right: -90px;
 }
 .header div {
   display: flex;
@@ -82,11 +86,10 @@ body {
   margin: 30px auto 0px;
   max-width: 490px;
   max-height: 340px;
-  /* height: 25vw; */
+  border-radius: 10px;
+  box-shadow: 0 0 10px 8px rgba(0,0,0,0.3);
 }
 
-/* ============================Card Component============================ */
-/* --(Container/card/title/img/body-album-album title/preview button)---- */
 .cardContainer {
   display: flex;
   flex-wrap: wrap;

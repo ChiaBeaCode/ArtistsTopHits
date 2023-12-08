@@ -9,7 +9,7 @@ export function Header() {
       </a>
       <div>
         <h1>Artist's Top 10 Tracks</h1>
-        <p> Spotify generator to view and preview an artist's top 10 tracks</p>
+        <p>Are you curious about an artist's best hits? Search their name and let's find out!</p>
       </div>
     </div>
   );
