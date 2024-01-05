@@ -9,7 +9,7 @@ export function Header() {
       </a>
       <div>
         <h1>Artist's Top Hits</h1>
-        <p>Are you curious about an artist's best hits? Search their name and let's find out!</p>
+        <p>Are you curious about an artist's best hits? Enter their name and let's find out!</p>
       </div>
     </div>
   );

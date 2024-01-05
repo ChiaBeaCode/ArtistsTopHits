@@ -81,7 +81,7 @@ export function SearchBar(props) {
     <div className="searchArea">
       <input
         className="form"
-        placeholder="Search artist...."
+        placeholder="Enter Artist Name...."
         type="input"
         onKeyDown={(event) => {
           if (event.key === "Enter") {

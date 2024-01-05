@@ -4,9 +4,9 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  border-top: 2px solid black;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+  border-top: 3px solid #371f41;
+  border-left: 3px solid #371f41;
+  border-right: 3px solid #371f41;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: #a0bdb2;

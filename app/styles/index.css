@@ -3,9 +3,8 @@
 }
 /* ----------Backdrop-------------- */
 body {
-  /* background: #f7ebeb; */
+  background: linear-gradient(to bottom, #B19591, #371F41);
   /* background-image: url("~/styles/background.jpg"); */
-  background-image: url("~/styles/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -17,13 +16,13 @@ body {
 .header {
   display: flex;
   flex-direction: row;
-  padding: 10px 0px 20px;
+  padding: 10px 0px 5px;
   background: #c2d3cd;
   text-align: center;
   font-size: larger;
   width: 100vw;
-  height: 60px;
-  border-bottom: 3px solid #7ea093;
+  height: fit-content;
+  border-bottom: 3px solid #B19591;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -55,12 +54,13 @@ body {
 }
 
 .form {
-  font-size: 18px;
+  font-size: 20px;
   width: 410px;
   height: 50px;
   margin: 0 0 20px auto;
   padding-left: 20px;
-  border: 2px solid #0f4b4b;
+  border: 3px solid #371F41;
+
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -73,11 +73,11 @@ body {
   font-size: 40px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  border: 2px solid #0f4b4b;
+  border: 3px solid #371F41;
   border-left-width: 0px;
-  padding: 8px 20px 0 20px;
+  padding: 8px 20px 0 25px;
   margin: 0 auto 0 0;
-  height: 56px;
+  height: 58px;
   cursor: pointer;
 }
 .defaultImg {
@@ -87,7 +87,8 @@ body {
   max-width: 490px;
   max-height: 340px;
   border-radius: 10px;
-  box-shadow: 0 0 10px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 0 100px 8px #B19591;
+
 }
 
 .cardContainer {
@@ -101,14 +102,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
-  border: 3px solid #7ea093;
+  background: #c2d3cd;
+  border: 3px solid #B19591;
   border-radius: 10px;
   width: 190px;
   height: 300px;
   margin: 10px;
   padding: 0 3px;
-  box-shadow: 8px 8px 2px 1px #b4b4b4;
+  box-shadow: 0 0 8px 1px #B19591;
+  /* NOICE 
+  background: #c2d3cd;
+  border: 3px solid #B19591;
+  box-shadow: 0 0 10px 1px #B19591;
+ */
+
 }
 
 .cardTitle {
@@ -174,7 +181,9 @@ body {
 }
 
 .previewBtn:hover {
-  transform: scale(1.2);
+  background-color: #246e6e;
+  /* transform: scale(1.2);
+  transition-duration: 0.5s; */
 }
 
 @media (max-width: 1000px) {

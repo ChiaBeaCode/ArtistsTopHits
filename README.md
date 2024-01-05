@@ -6,5 +6,8 @@ Then this application is for you! After a simple search, you are able to view th
 
 ## How it works:
 The user will input an artist's name and, if they are in the Spotify database, their top 10 songs will appear. The user will have the ability to sample the audio with a custom built audio player.
-## Tools:
+## Tech & Tools:
+- JavaScript
+- React
 - Spotify API
+- Remix framework
