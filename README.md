@@ -3,10 +3,10 @@ Have you ever came across a song that was the cream of the crop, and hoped the a
 Then this application is for you! After a simple search, you are able to view their 10 most popular songs. If we're lucky, we can even sample their music with a custom built-in audio player!
 ## How it works:
 The user will input an artist's name and, if they are in the Spotify database, their top 10 songs will appear. The user will have the ability to sample the audio with a custom built audio player.
+## Video Preview
+https://github.com/ChiaBeaCode/ArtistsTopHits/assets/109878562/077c21cc-468a-4fcf-b6d0-04f8a3feb804
 ## Tech & Tools:
 - JavaScript
 - React
 - Spotify API
 - Remix framework
-## Video Preview
-https://github.com/ChiaBeaCode/ArtistsTopHits/assets/109878562/077c21cc-468a-4fcf-b6d0-04f8a3feb804
