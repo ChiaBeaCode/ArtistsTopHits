@@ -4,7 +4,11 @@ Then this application is for you! After a simple search, you are able to view th
 ## How it works:
 The user will input an artist's name and, if they are in the Spotify database, their top 10 songs will appear. The user will have the ability to sample the audio with a custom built audio player.
 ## Video Preview
-https://github.com/ChiaBeaCode/ArtistsTopHits/assets/109878562/077c21cc-468a-4fcf-b6d0-04f8a3feb804
+
+
+https://github.com/ChiaBeaCode/ArtistsTopHits/assets/109878562/b2f038e5-7bbd-4ad1-9ad7-14bcc8ac2d5f
+
+
 ## Tech & Tools:
 - JavaScript
 - React
